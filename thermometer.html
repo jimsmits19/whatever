@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        #thermometerStem {
+            width:20px;
+            height:100px;
+            position:absolute;
+            left:calc(50vw - 20px);
+            top:100px;
+            border:3px solid black;
+            border-bottom: 0;
+            border-radius :20px 20px 0 0;
+            
+        }
+        #thermometerBase {
+            width:40px;
+            height: 40px;
+            position:absolute;
+            left: calc(50vw - 30px);
+            top:200px;
+            border:3px solid black;
+            border-top:0;
+            border-radius: 50% / 50%;
+            
+        }
+        #thermometerStemFill {
+            z-index: -2;
+            width:20px;
+            height:100px;
+            position:absolute;
+            left:calc(50vw - 20px);
+            top:100px;
+            border:3px solid black;
+            border-bottom: 0;
+            border-radius :20px 20px 0 0;
+            background-color: red;
+            
+        }
+        #thermometerBaseFill {
+            z-index: -2;
+            width:40px;
+            height: 40px;
+            position:absolute;
+            left: calc(50vw - 30px);
+            top:200px;
+            border:3px solid black;
+            border-top:0;
+            border-radius: 50% / 50%;
+            background-color: red;
+        }
+
+        #thermometerSlide {
+            z-index: -1;
+            width:80px;
+            height: 140px;
+            position:absolute;
+            left: calc(50vw - 50px);
+            top:100px;
+            background-color: white;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="thermometerStem"></div>
+    <div id="thermometerBase"></div>
+    <div id="thermometerStemFill"></div>
+    <div id="thermometerBaseFill"></div>
+    <div id="thermometerSlide"></div>
+    <script type="text/javascript">
+        thermometerSlide.style.top = "100px";
+
+        var handle = setInterval(function() {
+           let pos = thermometerSlide.style.top.replace("px", "");
+           pos = pos - 1;
+           thermometerSlide.style.top = pos + "px";
+           console.log(pos);
+           if (pos < -150) {
+               clearInterval(handle);
+           }
+        },50)
+        
+        
+
+
+
+    </script>
+</body>
+</html>

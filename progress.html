@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            position: absolute;
+            width: 300px;
+            height: 20px;
+            top:calc(50vh - 11px);
+            left: calc(50vw - 151px);
+            border:1px solid white;
+
+        }
+        span {
+            text-align: center;
+            position: absolute;
+            width:300px;
+            height:20px;
+            top:calc(50vh - 11px);
+            left: calc(50vw - 151px);
+        }
+        body {background-color:black;}
+    </style>
+</head>
+<body>
+    
+    <script>
+        //note: to have black on white and white on black text as the progress bar diminishes, 
+        //      we will have to nest the two spans in the respective divs and set overflow to hidden.
+        //      we may need to play with z-INdex as well, but we should be able to achieve a nice effect.
+
+
+        let container = document.createElement('div');
+        let fill = document.createElement('div');
+        let counter = document.createElement('span');
+        counter.innerText = '100%'
+        counter.style.color = 'cyan';
+
+        fill.style.backgroundColor = 'white';
+
+        document.body.appendChild(container);
+        document.body.appendChild(fill);
+        document.body.appendChild(counter);
+
+
+        (function loop(i) {
+            setTimeout(function() {
+                    let width = i;
+                    if (i % 3 == 0) {
+                        let value = parseInt(counter.innerText.replace('%',''))
+                        value= --value;
+                        counter.innerText = value + '%';
+                    }
+                    fill.style.width  = width + 'px';
+                if (--i) {
+                    loop(i);
+                }
+            }, 10)
+        })(300);
+
+
+
+    </script>
+</body>
+</html>

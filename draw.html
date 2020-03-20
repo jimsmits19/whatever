@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .point {
+            width:1px; 
+            height:1px;
+            position: absolute;
+            background-color:black;
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        let drawing = false;
+        document.addEventListener('mousedown', (event) => {
+            drawing = true;
+        })
+        document.addEventListener('mouseup', (event) => {
+            drawing = false;
+        })
+        document.addEventListener('mousemove', (event) => {
+            //console.log("drawing:" + drawing + ' ' + event.clientX+','+event.clientY);
+            if (drawing) {
+                let point = makePoint(event.clientX, event.clientY);
+                draw(point);
+            }
+        })
+
+        function draw(point) {
+            document.body.appendChild(point);
+        }
+
+        function makePoint(x, y) {
+            let point = document.createElement('div')
+            point.className = 'point';
+            point.style.left = x + 'px';
+            point.style.top = y + 'px';
+            return point;
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin:0;padding:0;
+        }
+        .cell {
+            position: absolute;
+            width:calc(1vw - .1vh);
+            height:calc(1vh - .1vh);
+            background-color:rgb(218, 214, 214);
+            border-right:inset black .1vh;
+            border-bottom:inset black .1vh;
+
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function paper() {
+            for(let i = 0; i < 100; i++)
+            {
+                for (let j = 0; j < 100; j++) {
+                    let div = document.createElement('div');
+                    div.id = `x${i}y${j}`;
+                    div.className = 'cell';
+                    div.style.top = i + 'vh';
+                    div.style.left = j + 'vw';
+                    document.body.appendChild(div);
+                }
+            }
+        }
+
+        paper();
+
+        document.addEventListener('mousedown', ()=> {
+
+                rectangle(10,20, document.getElementById(`x50y25`))
+
+        })
+
+        function colorCell (x, y, color) {
+            console.log(x);
+            console.log(y);
+            let top = document.getElementById(`x${x}y${y}`);
+            top.style.backgroundColor = color;
+        }
+
+        function rectangle(w, h, startCell) {
+
+            let coord = startCell.id.replace('x', '').split('y');
+            console.log(coord[0]); //50
+            console.log(coord[1]); //25
+
+            startx = parseInt(coord[0]);
+            starty=  parseInt(coord[1]);
+
+            for (let i=0; i<w; i++)
+            {
+                colorCell(startx+i,starty, 'blue');
+            }
+
+        }
+    </script>
+</body>
+</html>

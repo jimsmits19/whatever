@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 10px;
+            grid-template-rows: repeat(3, 1fr);
+        }
+
+        .frame {
+            display: flex;
+            justify-content: center;
+            background-color: rgb(178, 112, 240);
+            border: 1px solid rgb(133, 111, 249);
+            /* height:calc(33.33333333vh - 14px); */
+        }
+
+        .one {
+            /* background-color: rgb(122, 230, 15); */
+            /* grid-column: 1 / 1; */
+            grid-row: 1/4;
+            height: calc(100vh - 22px);
+        }
+
+        .frame div {
+            display: flex;
+            font-size: 5em;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .gp1 {
+            grid-row: 1 / 1;
+            grid-column: 1 / 1;
+        }
+
+        .gp4 {
+            grid-row: 2 / 2;
+            grid-column: 1 / 1;
+        }
+
+
+    </style>
+</head>
+
+<body>
+
+    <div id="grid">
+        <div class="frame gp1">
+            <div>1</div>
+        </div>
+        <div class="frame gp2">
+            <div>2</div>
+        </div>
+        <div class="frame gp3">
+            <div>3</div>
+        </div>
+        <div class="frame gp4">
+            <div>4</div>
+        </div>
+        <div class="frame gp5">
+            <div>5</div>
+        </div>
+        <div class="frame gp6">
+            <div>6</div>
+        </div>
+        <div class="frame gp7">
+            <div>7</div>
+        </div>
+        <div class="frame gp8">
+            <div>8</div>
+        </div>
+        <div class="frame gp9">
+            <div>9</div>
+        </div>
+    </div>
+
+    <script>
+        let frames = document.getElementsByClassName('frame');
+        let initiatorClassList;
+        let recipientClassList;
+
+
+        Array.from(frames).forEach((item) => {
+
+            item.addEventListener('mousedown', () => {
+                initiatorClasses = event.toElement.className;
+                //console.log('i' + initiatorClassList)
+            })
+
+            item.addEventListener('mouseup', () => {
+                recipientClasses = event.toElement.className;
+                //console.log('r' + recipientClassList);
+
+                let initiator = document.getElementsByClassName(initiatorClasses);
+                let recipient = document.getElementsByClassName(recipientClasses);
+
+                initiator.className = recipientClasses;
+                recipient.className = initiatorClasses;
+                console.log(initiator);
+                console.log(recipient);
+
+            })
+        })
+    </script>
+
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.js"></script>
+    <script>
+       var drake = dragula(Array.from(document.getElementsByClassName('frame')));
+    </script> -->
+</body>
+
+</html>
